@@ -14,13 +14,11 @@ def index():
         try:
             availability_api = WaybackMachineAvailabilityAPI(url, user_agent)
             oldest = availability_api.oldest()
-            latest = availability_api.archive_url
             timestamp = availability_api.timestamp()
             
             result = {
                 "input_url": url,
                 "oldest_snapshot": oldest,
-                "latest_snapshot": latest,
                 "timestamp": timestamp.strftime("%Y-%m-%d %H:%M:%S")
             }
         except Exception as e:
