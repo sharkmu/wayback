@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Wayback Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+    <h1>Wayback Tool</h1>
+
+    <form method="POST">
+        <input type="text" name="url" placeholder="Enter a URL" required>
+        <button type="submit">Check</button>
+    </form>
+
+    {% if result %}
+        <div>
+            <p><strong>Time it took:</strong> {{ action_time }}</p>
+            <p><strong>URL:</strong> {{ result.input_url }}</p>
+            <p><strong>Oldest Snapshot:</strong> <a href="{{ result.oldest_snapshot }}" target="_blank">{{ result.oldest_snapshot }}</a></p>
+            <p><strong>Timestamp:</strong> {{ result.timestamp }}</p>
+        </div>
+    {% elif result == False %}
+        <p style="color: red;">URL not found!</p>
+    {% endif %}
+</body>
+</html>
